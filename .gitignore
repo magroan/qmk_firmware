@@ -70,11 +70,3 @@ util/Win_Check_Output.txt
 secrets.tar
 id_rsa_*
 /.vs
-
-# python things
-__pycache__
-keyboards/shiro/keymaps/kadai/config.h
-keyboards/shiro/keymaps/kadai/keymap.c
-keyboards/shiro/keymaps/kadai/readme.md
-keyboards/shiro/rules.mk
-keyboards/shiro/rules.mk
