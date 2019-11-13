@@ -18,7 +18,7 @@ It is a one-handed keyboard with reference to Frogpad. Layout Designed by タク
 |------+------+------+------+------+------+------.
 | Shift|   Y  |   S  |   N  |   I  |   U  | Space|
 |------+------+------+------+------+------+------|
-| Ctrl |  Alt |  win |  Sym |  Num |  OPT |  Ent |
+| Ctrl |  win |  Alt |  Sym |  Num |  OPT |  Ent |
 `------------------------------------------------'
 ```
 
