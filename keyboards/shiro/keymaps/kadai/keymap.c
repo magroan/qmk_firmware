@@ -17,7 +17,7 @@
 
 enum layer_number {
   _NUMBER = 0,
-  _CURSOL,
+  _ALPHA,
   _TOGGLE
 };
 
@@ -37,47 +37,74 @@ enum {
   TD_4L,
   TD_4C,
   TD_4R,
+
+  TDA_1L,
+  TDA_1C,
+  TDA_1R,
+
+  TDA_2L,
+  TDA_2C,
+  TDA_2R,
+
+  TDA_3L,
+  TDA_3C,
+  TDA_3R,
+
+  TDA_4L,
+  TDA_4C,
+  TDA_4R,
 };
 
 #define NUMBER TO(_NUMBER)
-#define CURSOL TO(_CURSOL)
+#define ALPHA TO(_ALPHA)
 #define TOGGLE TO(_TOGGLE)
-
+//toggle
 #define KC_1L TD(TD_1L)
 #define KC_1C TD(TD_1C)
 #define KC_1R TD(TD_1R)
-
 #define KC_2L TD(TD_2L)
 #define KC_2C TD(TD_2C)
 #define KC_2R TD(TD_2R)
-
 #define KC_3L TD(TD_3L)
 #define KC_3C TD(TD_3C)
 #define KC_3R TD(TD_3R)
-
-//#define KC_4L TD(TD_4L)
+#define KC_4L TD(TD_4L)
 #define KC_4C TD(TD_4C)
-//#define KC_4R TD(TD_4R)
+#define KC_4R TD(TD_4R)
+
+//alpha
+#define KCA_1L TD(TDA_1L)
+#define KCA_1C TD(TDA_1C)
+#define KCA_1R TD(TDA_1R)
+#define KCA_2L TD(TDA_2L)
+#define KCA_2C TD(TDA_2C)
+#define KCA_2R TD(TDA_2R)
+#define KCA_3L TD(TDA_3L)
+#define KCA_3C TD(TDA_3C)
+#define KCA_3R TD(TDA_3R)
+#define KCA_4L TD(TDA_4L)
+#define KCA_4C TD(TDA_4C)
+#define KCA_4R TD(TDA_4R)
 
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NUMBER] = LAYOUT( 
-    NUMBER,   CURSOL,   TOGGLE,
-    KC_P7,    KC_P8,    KC_P9,
-    KC_P4,    KC_P5,    KC_P6,
+    TOGGLE,   KC_SPC,   TDA_4R,
     KC_P1,    KC_P2,    KC_P3,
+    KC_P4,    KC_P5,    KC_P6,
+    KC_P7,    KC_P8,    KC_P9,
     KC_BSPC,  KC_P0,    KC_ENT
   ),
-  [_CURSOL] = LAYOUT( 
-    NUMBER,   CURSOL,   TOGGLE,
-    KC_HOME,  KC_UP,    KC_PGUP,
-    KC_LEFT,  KC_ESC,   KC_RIGHT,
-    KC_END,   KC_DOWN,  KC_PGDN,
-    KC_BSPC,  KC_DEL,   KC_ENT
+  [_ALPHA] = LAYOUT( 
+    NUMBER,   KC_SPC,   TDA_4R,
+    KC_DEL,   KCA_1C,   KCA_1R,
+    KCA_2L,   KCA_2C,   KCA_2R,
+    KCA_3L,   KCA_3C,   KCA_3R,
+    KC_BSPC,  KC_LCAP,  KC_ENT
   ), 
   [_TOGGLE] = LAYOUT( 
-    NUMBER,   CURSOL,   TOGGLE,
+    ALPHA,    KC_SPC,   TDA_4R,
     KC_1L,    KC_1C,    KC_1R,
     KC_2L,    KC_2C,    KC_2R,
     KC_3L,    KC_3C,    KC_3R,
@@ -183,14 +210,10 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
       if (state->count == 1) {
 	SEND_STRING("ya");// keydown時の動作(''と入力)
       } else if (state->count == 2) {
-	SEND_STRING("xi");
-      } else if (state->count == 3) {
 	SEND_STRING("yu");
-      } else if (state->count == 4) {
-	SEND_STRING("xe");
-      } else if (state->count == 5) {
+      } else if (state->count == 3) {
 	SEND_STRING("yo");
-      }
+	}
     break;
     case TD(TD_3R):
       if (state->count == 1) {
@@ -227,8 +250,6 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
 	SEND_STRING("nn");
       } else if (state->count == 4) {
 	SEND_STRING("xtu");
-      } else if (state->count == 5) {
-	SEND_STRING(SS_LALT("`"));
       }
     break;
     case TD(TD_4R):
@@ -242,6 +263,103 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
 	SEND_STRING("Bye");
       } else if (state->count == 5) {
 	SEND_STRING("one more please");
+      }
+break;
+//以下ALPHA
+case TD(TDA_1L):
+      if (state->count == 1) {
+
+      }
+    break;
+    case TD(TDA_1C):
+      if (state->count == 1) {
+	KC_A
+      } else if (state->count == 2) {
+	KC_B
+      } else if (state->count == 3) {
+	KC_C
+      } 
+    break;
+    case TD(TDA_1R):
+      if (state->count == 1) {
+	KC_D // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_E
+      } else if (state->count == 3) {
+	KC_F
+      } 
+    break;
+    case TD(TDA_2L):
+      if (state->count == 1) {
+	KC_G // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_H
+      } else if (state->count == 3) {
+	KC_I
+      } 
+    break;
+    case TD(TDA_2C):
+      if (state->count == 1) {
+	KC_J // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_K
+      } else if (state->count == 3) {
+	KC_L
+      }
+     break;
+     case TD(TDA_2R):
+      if (state->count == 1) {
+	KC_M // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_N
+      } else if (state->count == 3) {
+	KC_O
+      } 
+    break;
+    case TD(TDA_3L):
+      if (state->count == 1) {
+	KC_P // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_Q
+      } else if (state->count == 3) {
+	KC_R
+      } else if (state->count == 4) {
+	KC_S
+      }
+    break;
+    case TD(TDA_3C):
+      if (state->count == 1) {
+	KC_T // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_U
+      } else if (state->count == 3) {
+	KC_V
+	}
+    break;
+    case TD(TDA_3R):
+      if (state->count == 1) {
+	KC_W // keydown時の動作(''と入力)
+      } else if (state->count == 2) {
+	KC_X
+      } else if (state->count == 3) {
+	KC_Y
+      } else if (state->count == 4) {
+	KC_Z
+      } 
+    break;
+    case TD(TDA_4L):
+      if (state->count == 1) {
+	
+      }
+    break;
+    case TD(TDA_4C):
+      if (state->count == 1) {
+	
+      }
+    break;
+    case TD(TDA_4R):
+      if (state->count == 1) {
+	SEND_STRING(SS_LALT("`"));
       }
     break;
  }
@@ -270,4 +388,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_4L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_4C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_4R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+//ALPHA
+  [TDA_1L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_1C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_1R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+
+  [TDA_2L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_2C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_2R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+
+  [TDA_3L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_3C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_3R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+
+  [TDA_4L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_4C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TDA_4R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+
+
 };
