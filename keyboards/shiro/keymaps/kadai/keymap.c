@@ -273,78 +273,104 @@ case TD(TDA_1L):
     break;
     case TD(TDA_1C):
       if (state->count == 1) {
-	KC_A
+	register_code(KC_A);
+	unregister_code(KC_A);
       } else if (state->count == 2) {
-	KC_B
+	register_code(KC_B);
+	unregister_code(KC_B);
       } else if (state->count == 3) {
-	KC_C
+	register_code(KC_C);
+	unregister_code(KC_C);
       } 
     break;
     case TD(TDA_1R):
       if (state->count == 1) {
-	KC_D // keydown時の動作(''と入力)
+	register_code(KC_D);
+	unregister_code(KC_D);
       } else if (state->count == 2) {
-	KC_E
+	register_code(KC_E);
+	unregister_code(KC_E);
       } else if (state->count == 3) {
-	KC_F
+	register_code(KC_F);
+	unregister_code(KC_F);
       } 
     break;
     case TD(TDA_2L):
       if (state->count == 1) {
-	KC_G // keydown時の動作(''と入力)
+	register_code(KC_G);
+	unregister_code(KC_G);
       } else if (state->count == 2) {
-	KC_H
+	register_code(KC_H);
+	unregister_code(KC_H);
       } else if (state->count == 3) {
-	KC_I
+	register_code(KC_I);
+	unregister_code(KC_I);
       } 
     break;
     case TD(TDA_2C):
       if (state->count == 1) {
-	KC_J // keydown時の動作(''と入力)
+	register_code(KC_J);
+	unregister_code(KC_J);
       } else if (state->count == 2) {
-	KC_K
+	register_code(KC_K);
+	unregister_code(KC_K);
       } else if (state->count == 3) {
-	KC_L
+	register_code(KC_L);
+	unregister_code(KC_L);
       }
      break;
      case TD(TDA_2R):
       if (state->count == 1) {
-	KC_M // keydown時の動作(''と入力)
+	register_code(KC_M);
+	unregister_code(KC_M);
       } else if (state->count == 2) {
-	KC_N
+	register_code(KC_N);
+	unregister_code(KC_N);
       } else if (state->count == 3) {
-	KC_O
+	register_code(KC_O);
+	unregister_code(KC_O);
       } 
     break;
     case TD(TDA_3L):
       if (state->count == 1) {
-	KC_P // keydown時の動作(''と入力)
+	register_code(KC_P);
+	unregister_code(KC_P);
       } else if (state->count == 2) {
-	KC_Q
+	register_code(KC_Q);
+	unregister_code(KC_Q);
       } else if (state->count == 3) {
-	KC_R
+	register_code(KC_R);
+	unregister_code(KC_R);
       } else if (state->count == 4) {
-	KC_S
+	register_code(KC_S);
+	unregister_code(KC_S);
       }
     break;
     case TD(TDA_3C):
       if (state->count == 1) {
-	KC_T // keydown時の動作(''と入力)
+	register_code(KC_T);
+	unregister_code(KC_T);
       } else if (state->count == 2) {
-	KC_U
+	register_code(KC_U);
+	unregister_code(KC_U);
       } else if (state->count == 3) {
-	KC_V
+	register_code(KC_V);
+	unregister_code(KC_V);
 	}
     break;
     case TD(TDA_3R):
       if (state->count == 1) {
-	KC_W // keydown時の動作(''と入力)
+	register_code(KC_W);
+	unregister_code(KC_W);
       } else if (state->count == 2) {
-	KC_X
+	register_code(KC_X);
+	unregister_code(KC_X);
       } else if (state->count == 3) {
-	KC_Y
+	register_code(KC_Y);
+	unregister_code(KC_Y);
       } else if (state->count == 4) {
-	KC_Z
+	register_code(KC_Z);
+	unregister_code(KC_Z);
       } 
     break;
     case TD(TDA_4L):
