@@ -150,7 +150,7 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     break;
     case TD(TD_1C):
       if (state->count == 1) {
-       SEND_STRING(SS_LGUI(KC_UP));//Win+UP
+       SEND_STRING(SS_LGUI(SS_TAP(X_UP)));//Win+UP
 	
       }
     break;
