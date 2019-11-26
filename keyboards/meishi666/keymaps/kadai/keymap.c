@@ -56,11 +56,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_CURSOL] = LAYOUT( \
-    KC_ENT,  MOUSE,   KC_TAB,  \
-             KC_UP,            \
-    KC_LEFT, KC_DOWN, KC_RIGHT \
+       KC_ENT,  CTL,   KC_BSPC,  \
+                KC_MS_UP,               \
+    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
   ),
-
+/**使用しない**/
   [_MOUSE] = LAYOUT( \
     KC_MS_BTN1, CTL,        KC_MS_BTN2, \
                 KC_MS_UP,               \
