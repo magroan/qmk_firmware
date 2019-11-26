@@ -14,9 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#ifdef AUDIO_ENABLE
-  #include "audio.h"
-#endif
 #include QMK_KEYBOARD_H
 extern keymap_config_t keymap_config;
 #ifdef RGBLIGHT_ENABLE
@@ -24,6 +21,8 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 rgblight_config_t RGB_current_config;
 #endif
+
+#include <unistd.h>
 
 #ifdef SSD1306OLED
   #include "ssd1306.h"
@@ -33,9 +32,6 @@ rgblight_config_t RGB_current_config;
   #include "sendchar.h"
   #include "common/oled_helper.h"
 #endif
-// Defines the keycodes used by our macros in process_record_user
-//enum custom_keycodes {
-//};
 enum {
   TD_1L = 0,
   TD_1C,
@@ -83,53 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-//float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
-//float tone_plover[][2]     = SONG(PLOVER_SOUND);
-//float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
-#endif
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case CTL:
-      #ifdef AUDIO_ENABLE
-        PLAY_SONG(tone_qwerty);
-      #endif
-      return true;
-      break;
-    case CURSOL:
-      #ifdef AUDIO_ENABLE
-        PLAY_SONG(tone_dvorak);
-      #endif
-      return true;
-      break;
-    case MOUSE:
-      #ifdef AUDIO_ENABLE
-        PLAY_SONG(music_scale);
-      #endif
-      return true;
-      break;
-    }
-  return true;
-}
-
-void matrix_init_user(void) {
-  #ifdef AUDIO_ENABLE
-    startup_user();
-  #endif
-  //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
-  #ifdef SSD1306OLED
-    iota_gfx_init(true);   // turns on the display
-  #endif
-}
-
 void led_set_user(uint8_t usb_led) {
 }
 
-#ifdef AUDIO_ENABLE
 
 void startup_user()
 {
@@ -139,19 +91,8 @@ void startup_user()
 void shutdown_user()
 {
     _delay_ms(150);
-    stop_all_notes();
+ //   stop_all_notes();
 }
-
-void music_on_user(void)
-{
-    music_scale_user();
-}
-
-void music_scale_user(void)
-{
-    PLAY_SONG(music_scale);
-}
-#endif
 
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
 #ifdef SSD1306OLED
@@ -220,10 +161,10 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
   switch (state->keycode) {
     case TD(TD_1L):
       if (state->count == 1) {
-       SEND_STRING(SS_LGUI("r"))//Win+r
-       sleep(1000);//１秒まつ
-       SEND_STRING("notepad.exe")//メモ帳
-       sleep(1000);
+       SEND_STRING(SS_LGUI("r"));//Win+r
+   //    Sleep(1000);//１秒まつ
+       SEND_STRING("notepad.exe");//メモ帳
+     //  Sleep(1000);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
       } 
     break;
@@ -254,20 +195,19 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
       } 
     break;
   }
-}
+};
 
 void dance_cln_reset (qk_tap_dance_state_t *state, void *user_data) {  // TapDanceの最後のリセット処理で実行される
   switch (state->keycode) {
       break;
   }
-}
+};
 
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_1L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_1C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_1R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
-
   [TD_2L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_2C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_2R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
