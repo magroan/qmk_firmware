@@ -61,18 +61,18 @@ enum layer_number {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CTL] = LAYOUT(
-    KC_1L, CURSOL,  KC_SLEP,
-             C(KC_S),
-    C(KC_C), RGB_MOD, C(KC_V)
+    KC_1L, MOUSE,  KC_SLEP,
+           KC_1C,
+    KC_2L, KC_2C, KC_WBAK
   ),
-
+/*
   [_CURSOL] = LAYOUT(
-       KC_ENT,  CTL,   KC_BSPC,
+    KC_MS_BTN1,  CTL,   KC_MS_BTN2,
                 KC_MS_UP,
     KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
   ),
-/**使用しない**/
-  [_MOUSE] = LAYOUT( \
+*/
+  [_MOUSE] = LAYOUT(
     KC_MS_BTN1, CTL,        KC_MS_BTN2,
                 KC_MS_UP,
     KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
@@ -164,29 +164,36 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
        SEND_STRING(SS_LGUI("r"));//Win+r
 //	Sleep(100);
        SEND_STRING("");//メモ帳
-     //  Sleep(1000);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
       } 
     break;
     case TD(TD_1C):
       if (state->count == 1) {
-	SEND_STRING("ka");// keydown時の動作(''と入力)
+       SEND_STRING(SS_LGUI(X_UP));//Win+UP
+	
       }
     break;
     case TD(TD_1R):
       if (state->count == 1) {
-	SEND_STRING("sa"); // keydown時の動作(''と入力)
+
       } 
     break;
     
     case TD(TD_2L):
       if (state->count == 1) {
-	SEND_STRING("a"); // keydown時の動作(''と入力)
+       SEND_STRING(SS_LGUI("r"));//Win+r
+       SEND_STRING("osk");//on screen keybord
+       SEND_STRING(SS_TAP(X_ENTER));//Enter
+
+
       } 
     break;
     case TD(TD_2C):
       if (state->count == 1) {
-	SEND_STRING("ka");// keydown時の動作(''と入力)
+       SEND_STRING(SS_LGUI("r"));//Win+r
+       SEND_STRING("https://www.youtube.com/?gl=JP&hl=ja");//メモ帳
+       SEND_STRING(SS_TAP(X_ENTER));//Enter
+
       }          
     break;
     case TD(TD_2R):
