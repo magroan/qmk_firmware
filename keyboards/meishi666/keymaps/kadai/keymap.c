@@ -36,12 +36,27 @@ rgblight_config_t RGB_current_config;
 // Defines the keycodes used by our macros in process_record_user
 //enum custom_keycodes {
 //};
+enum {
+  TD_1L = 0,
+  TD_1C,
+  TD_1R,
+  TD_2L,
+  TD_2C,
+  TD_2R,
+};
 
 enum layer_number {
   _CTL = 0,
   _CURSOL,
   _MOUSE
 };
+
+#define KC_1L TD(TD_1L)
+#define KC_1C TD(TD_1C)
+#define KC_1R TD(TD_1R)
+#define KC_2L TD(TD_2L)
+#define KC_2C TD(TD_2C)
+#define KC_2R TD(TD_2R)
 
 #define CTL    TO(_CTL)
 #define CURSOL TO(_CURSOL)
@@ -50,7 +65,7 @@ enum layer_number {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CTL] = LAYOUT( \
-    C(KC_Z), CURSOL,  C(KC_Y),      \
+    C(KC_Z), CURSOL,  KC_SLEP,      \
              C(KC_S),            \
     C(KC_C), RGB_MOD, C(KC_V) \
   ),
@@ -199,5 +214,62 @@ void iota_gfx_task_user(void) {
   render_status(&matrix);
   matrix_update(&display, &matrix);
 }
-
 #endif
+
+void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->keycode) {
+    case TD(TD_1L):
+      if (state->count == 1) {
+       SEND_STRING(SS_LGUI("r"))//Win+r
+       sleep(1000);//１秒まつ
+       SEND_STRING("notepad.exe")//メモ帳
+       sleep(1000);
+       SEND_STRING(SS_TAP(X_ENTER));//Enter
+      } 
+    break;
+    case TD(TD_1C):
+      if (state->count == 1) {
+	SEND_STRING("ka");// keydown時の動作(''と入力)
+      }
+    break;
+    case TD(TD_1R):
+      if (state->count == 1) {
+	SEND_STRING("sa"); // keydown時の動作(''と入力)
+      } 
+    break;
+    
+    case TD(TD_2L):
+      if (state->count == 1) {
+	SEND_STRING("a"); // keydown時の動作(''と入力)
+      } 
+    break;
+    case TD(TD_2C):
+      if (state->count == 1) {
+	SEND_STRING("ka");// keydown時の動作(''と入力)
+      }          
+    break;
+    case TD(TD_2R):
+      if (state->count == 1) {
+	SEND_STRING("sa"); // keydown時の動作(''と入力)
+      } 
+    break;
+  }
+}
+
+void dance_cln_reset (qk_tap_dance_state_t *state, void *user_data) {  // TapDanceの最後のリセット処理で実行される
+  switch (state->keycode) {
+      break;
+  }
+}
+
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_1L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TD_1C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TD_1R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+
+  [TD_2L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TD_2C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+  [TD_2R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
+};
+
