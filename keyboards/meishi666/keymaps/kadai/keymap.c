@@ -156,7 +156,7 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     break;
     case TD(TD_1R):
       if (state->count == 1) {
-
+	SEND_STRING(""); // keydown時の動作("入力")
       } 
     break;
     
@@ -183,7 +183,7 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     break;
     case TD(TD_2R):
       if (state->count == 1) {
-	SEND_STRING("sa"); // keydown時の動作(''と入力)
+	SEND_STRING(""); // keydown時の動作("入力")
       } 
     break;
   }
