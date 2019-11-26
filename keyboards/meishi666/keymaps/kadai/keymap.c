@@ -21,7 +21,7 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 rgblight_config_t RGB_current_config;
 #endif
-
+//Sleep?
 #include <unistd.h>
 
 #ifdef SSD1306OLED
@@ -43,7 +43,6 @@ enum {
 
 enum layer_number {
   _CTL = 0,
-  _CURSOL,
   _MOUSE
 };
 
@@ -55,7 +54,6 @@ enum layer_number {
 #define KC_2R TD(TD_2R)
 
 #define CTL    TO(_CTL)
-#define CURSOL TO(_CURSOL)
 #define MOUSE  TO(_MOUSE)
 #define CP     M(0)
 
@@ -65,22 +63,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            KC_1C,
     KC_2L, KC_2C, KC_WBAK
   ),
-/*
-  [_CURSOL] = LAYOUT(
-    KC_MS_BTN1,  CTL,   KC_MS_BTN2,
-                KC_MS_UP,
-    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
-  ),
-*/
   [_MOUSE] = LAYOUT(
     KC_MS_BTN1, CTL,        KC_MS_BTN2,
                 KC_MS_UP,
     KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
   )
 };
-
-void led_set_user(uint8_t usb_led) {
-}
 
 
 void startup_user()
@@ -111,7 +99,6 @@ void matrix_update(struct CharacterMatrix *dest,
 
 //assign the right code to your layers for OLED display
 #define L_CTL 0
-#define L_CURSOL (1<<_CURSOL)
 #define L_MOUSE (1<<_MOUSE)
 
 void render_status(struct CharacterMatrix *matrix) {
@@ -123,9 +110,6 @@ void render_status(struct CharacterMatrix *matrix) {
      case L_CTL:
       matrix_write_P(matrix, PSTR("Control Mode\n"));
       break;
-    case L_CURSOL:
-      matrix_write_P(matrix, PSTR("Cursol Mode\n"));
-      break;
     case L_MOUSE:
       matrix_write_P(matrix, PSTR("Mouse Mode\n"));
       break;
@@ -135,10 +119,6 @@ void render_status(struct CharacterMatrix *matrix) {
   }
   UPDATE_LED_STATUS();
   RENDER_LED_STATUS(matrix);
-  // Host Keyboard LED Status
-  //char led[40];
-  //snprintf(led, sizeof(led), "\n%s  %s  %s", (host_keyboard_leds() & (1 << USB_LED_NUM_LOCK)) ? "NUMLOCK" : "       ", (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) ? "CAPS" : "    ", (host_keyboard_leds() & (1 << USB_LED_SCROLL_LOCK)) ? "SCLK" : "    ");
-  //matrix_write(matrix, led);
 }
 
 
@@ -162,14 +142,15 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     case TD(TD_1L):
       if (state->count == 1) {
        SEND_STRING(SS_LGUI("r"));//Win+r
-//	Sleep(100);
-       SEND_STRING("");//メモ帳
+	_delay_ms(500);
+       SEND_STRING("notepad.exe");//メモ帳
+	_delay_ms(500);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
       } 
     break;
     case TD(TD_1C):
       if (state->count == 1) {
-       SEND_STRING(SS_LGUI(X_UP));//Win+UP
+       SEND_STRING(SS_LGUI(KC_UP));//Win+UP
 	
       }
     break;
@@ -182,7 +163,9 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     case TD(TD_2L):
       if (state->count == 1) {
        SEND_STRING(SS_LGUI("r"));//Win+r
+	_delay_ms(500);
        SEND_STRING("osk");//on screen keybord
+	_delay_ms(500);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
 
 
@@ -191,7 +174,9 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     case TD(TD_2C):
       if (state->count == 1) {
        SEND_STRING(SS_LGUI("r"));//Win+r
+	_delay_ms(500);
        SEND_STRING("https://www.youtube.com/?gl=JP&hl=ja");//メモ帳
+	_delay_ms(500);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
 
       }          
