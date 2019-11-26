@@ -60,22 +60,22 @@ enum layer_number {
 #define CP     M(0)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_CTL] = LAYOUT( \
-    C(KC_Z), CURSOL,  KC_SLEP,      \
-             C(KC_S),            \
-    C(KC_C), RGB_MOD, C(KC_V) \
+  [_CTL] = LAYOUT(
+    KC_1L, CURSOL,  KC_SLEP,
+             C(KC_S),
+    C(KC_C), RGB_MOD, C(KC_V)
   ),
 
-  [_CURSOL] = LAYOUT( \
-       KC_ENT,  CTL,   KC_BSPC,  \
-                KC_MS_UP,               \
-    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
+  [_CURSOL] = LAYOUT(
+       KC_ENT,  CTL,   KC_BSPC,
+                KC_MS_UP,
+    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
   ),
 /**使用しない**/
   [_MOUSE] = LAYOUT( \
-    KC_MS_BTN1, CTL,        KC_MS_BTN2, \
-                KC_MS_UP,               \
-    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT \
+    KC_MS_BTN1, CTL,        KC_MS_BTN2,
+                KC_MS_UP,
+    KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT
   )
 };
 
@@ -162,8 +162,8 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
     case TD(TD_1L):
       if (state->count == 1) {
        SEND_STRING(SS_LGUI("r"));//Win+r
-   //    Sleep(1000);//１秒まつ
-       SEND_STRING("notepad.exe");//メモ帳
+//	Sleep(100);
+       SEND_STRING("");//メモ帳
      //  Sleep(1000);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
       } 
