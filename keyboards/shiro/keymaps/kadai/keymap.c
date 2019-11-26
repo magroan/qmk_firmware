@@ -396,7 +396,7 @@ case TD(TDA_1L):
 	}else if (state->count == 2) {
 	SEND_STRING("p");
 	}else if (state->count == 3) {
-	SEND_STRING("'"");
+	SEND_STRING("''");
       }
     break;
  }
