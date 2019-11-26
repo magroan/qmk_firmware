@@ -90,21 +90,21 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NUMBER] = LAYOUT( 
-    KCA_4L,   KCA_4R,   KCA_4C,
+    TOGGLE,   KC_SPC,   TDA_4R,
     KC_P1,    KC_P2,    KC_P3,
     KC_P4,    KC_P5,    KC_P6,
     KC_P7,    KC_P8,    KC_P9,
     KC_BSPC,  KC_P0,    KC_ENT
   ),
   [_ALPHA] = LAYOUT( 
-    KCA_4L,   KCA_4R,   KCA_4C,
+    NUMBER,   KC_SPC,   TDA_4R,
     KC_DEL,   KCA_1C,   KCA_1R,
     KCA_2L,   KCA_2C,   KCA_2R,
     KCA_3L,   KCA_3C,   KCA_3R,
     KC_BSPC,  KC_LCAP,  KC_ENT
   ), 
   [_TOGGLE] = LAYOUT( 
-    KCA_4L,    KCA_4R,   KCA_4C,
+    ALPHA,    KC_SPC,   TDA_4R,
     KC_1L,    KC_1C,    KC_1R,
     KC_2L,    KC_2C,    KC_2R,
     KC_3L,    KC_3C,    KC_3R,
@@ -373,23 +373,14 @@ case TD(TDA_1L):
 	unregister_code(KC_Z);
       } 
     break;
-//レイヤー切り替え
     case TD(TDA_4L):
       if (state->count == 1) {
-	  TOGGLE
-	}else if (state->count == 2) {
-  	  ALPHA
-	}else if (state->count == 3) {
-	  NUMBER
-
+	
+      }
     break;
     case TD(TDA_4C):
       if (state->count == 1) {
-	SEND_STRING("x");
-	}else if (state->count == 2) {
-	SEND_STRING("p");
-	}else if (state->count == 3) {
-	SEND_STRING("\"");
+	
       }
     break;
     case TD(TDA_4R):
