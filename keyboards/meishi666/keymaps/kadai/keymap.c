@@ -175,7 +175,7 @@ void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
       if (state->count == 1) {
        SEND_STRING(SS_LGUI("r"));//Win+r
 	_delay_ms(500);
-       SEND_STRING("https://www.youtube.com/?gl=JP&hl=ja");//メモ帳
+       SEND_STRING("https'//www.youtube.com/");//メモ帳
 	_delay_ms(500);
        SEND_STRING(SS_TAP(X_ENTER));//Enter
 
