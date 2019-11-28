@@ -153,8 +153,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch(keycode) {
             case macro1R:
-
-       SEND_STRING(SS_LALT(SS_TAP(X_TAB)));//Win+TAB
+//ここに動作を記述していく
+//例:       SEND_STRING(SS_LALT(SS_TAP(X_TAB)));//Win+TAB
 
                 return false;
 	    break;
