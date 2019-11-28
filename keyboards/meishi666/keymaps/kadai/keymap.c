@@ -41,6 +41,16 @@ enum {
   TD_2R,
 };
 
+//マクロ定義
+enum custom_keycodes {
+  macro1L = SAFE_RANGE,
+  macro1C,
+  macro1R,
+  macro2L,
+  macro2C,
+  macro2R,
+  };
+
 enum layer_number {
   _CTL = 0,
   _MOUSE
@@ -59,7 +69,7 @@ enum layer_number {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CTL] = LAYOUT(
-    KC_1L, MOUSE,  KC_SLEP,
+    KC_1L, MOUSE,  macro1R,
            KC_1C,
     KC_2L, KC_2C, KC_WBAK
   ),
@@ -137,6 +147,29 @@ void iota_gfx_task_user(void) {
 }
 #endif
 
+//マクロ定義
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch(keycode) {
+            case macro1R:
+
+       SEND_STRING(SS_LGUI("r"));//Win+r
+	_delay_ms(500);
+       SEND_STRING("notepad.exe");//メモ帳
+	_delay_ms(500);
+       SEND_STRING(SS_TAP(X_ENTER));//Enter
+
+                return false;
+	    break;
+        }
+    }
+    return true;
+    break;
+};
+
+
+//タップダンス
 void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
   switch (state->keycode) {
     case TD(TD_1L):
@@ -204,4 +237,3 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_2C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
   [TD_2R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
 };
-
