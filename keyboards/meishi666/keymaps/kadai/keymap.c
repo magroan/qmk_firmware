@@ -154,11 +154,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         switch(keycode) {
             case macro1R:
 
-       SEND_STRING(SS_LGUI("r"));//Win+r
-	_delay_ms(500);
-       SEND_STRING("notepad.exe");//メモ帳
-	_delay_ms(500);
-       SEND_STRING(SS_TAP(X_ENTER));//Enter
+       SEND_STRING(SS_LALT(SS_TAP(X_TAB)));//Win+TAB
 
                 return false;
 	    break;
