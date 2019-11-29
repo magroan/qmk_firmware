@@ -69,9 +69,9 @@ enum layer_number {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_CTL] = LAYOUT(
-    KC_1L, MOUSE,  macro1R,
+    KC_1L, MOUSE,  KC_VOLU,
            KC_1C,
-    KC_2L, KC_2C, KC_WBAK
+    KC_2L, KC_2C, KC_VOLD
   ),
   [_MOUSE] = LAYOUT(
     KC_MS_BTN1, CTL,        KC_MS_BTN2,
