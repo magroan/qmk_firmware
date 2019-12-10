@@ -1,4 +1,4 @@
-# Amanecer
+ï»¿# Amanecer
 
 keymaps
 
@@ -15,17 +15,17 @@ keymaps
 
 
 
-#CTLƒ‚[ƒh
-[ƒƒ‚’ ‚ð‹N“®]	[ƒ}ƒEƒXƒ‚[ƒh‚ÖˆÚs]	[ƒ{ƒŠƒ…[ƒ€UP]
+#CTLãƒ¢ãƒ¼ãƒ‰
+[ãƒ¡ãƒ¢å¸³ã‚’èµ·å‹•]	[ãƒžã‚¦ã‚¹ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ]	[ãƒœãƒªãƒ¥ãƒ¼ãƒ UP]
 
-		[Window‚ÌÅ‘å‰»]
+		[Windowã®æœ€å¤§åŒ–]
 
-[ƒL[ƒ{[ƒh]	[youtube.com]		[ƒ{ƒŠƒ…[ƒ€DOWN]
+[ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰]	[youtube.com]		[ãƒœãƒªãƒ¥ãƒ¼ãƒ DOWN]
 
 
 
-#MOUSEƒ‚[ƒh
+#MOUSEãƒ¢ãƒ¼ãƒ‰
 
-[¶ƒNƒŠƒbƒN]	[CTLƒ‚[ƒh]	[‰EƒNƒŠƒbƒN]
-		[ƒ}ƒEƒXãˆÚ“®]
-[ƒ}ƒEƒX¶ˆÚ“®]	[ƒ}ƒEƒX‰ºˆÚ“®]	[ƒ}ƒEƒX‰EˆÚ“®]
+[å·¦ã‚¯ãƒªãƒƒã‚¯]	[CTLãƒ¢ãƒ¼ãƒ‰]	[å³ã‚¯ãƒªãƒƒã‚¯]
+		[ãƒžã‚¦ã‚¹ä¸Šç§»å‹•]
+[ãƒžã‚¦ã‚¹å·¦ç§»å‹•]	[ãƒžã‚¦ã‚¹ä¸‹ç§»å‹•]	[ãƒžã‚¦ã‚¹å³ç§»å‹•]
