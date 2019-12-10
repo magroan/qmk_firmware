@@ -18,7 +18,7 @@ keymaps
 #CTLモード  
   
     [メモ帳を起動]	[マウスモードへ移行]	[ボリュームUP]  
-      	        	[Windowの最大化]  
+      	        [Windowの最大化]  
     [キーボード]	[youtube.com]		[ボリュームDOWN]  
   
   
