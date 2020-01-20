@@ -42,7 +42,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_NUMBER] = LAYOUT(
 	macro1, macro2, macro3,
-	macro4, macro5, macro6,
+	macro4, KC_PSCR, macro6,
 	macro7, macro8, KC_NLCK,
 	KC_ESC, KC_LCTL, KC_LSFT,
 	macro13, macro14, macro15
@@ -105,11 +105,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			break;
 		case macro5:
 			//ここに動作を記述していく
-		SEND_STRING(SS_LGUI("r"));//Win+r
-			_delay_ms(500);
-		SEND_STRING("KC_PSCR");//スクショ
-			_delay_ms(500);
-		SEND_STRING(SS_TAP(X_ENTER));//Enter
+//		SEND_STRING(SS_LGUI("r"));//Win+r
+//			_delay_ms(500);
+//		SEND_STRING("KC_PSCR");//スクショ
+//			_delay_ms(500);
+//		SEND_STRING(SS_TAP(X_ENTER));//Enter
 
 			return false;
 			break;
@@ -127,7 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			//ここに動作を記述していく
 		SEND_STRING(SS_LGUI("r"));//Win+r
 			_delay_ms(500);
-		SEND_STRING("https'//twitter.com/login?lang=ja");//ツイッター
+		SEND_STRING("https'//twitter.com/");//ツイッター
 			_delay_ms(500);
 		SEND_STRING(SS_TAP(X_ENTER));//Enter
 
