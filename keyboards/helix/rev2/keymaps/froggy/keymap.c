@@ -64,7 +64,7 @@ enum macro_keycodes {
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 
-#if HELIX_ROWS == 5
+#if MATRIX_ROWS == 10 // HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Base
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Ctrl | Gui  | Alt  | Sym  | Num  | OPT  | Ent  |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
-   */
+   *GUI‚ÆAlt‚ÌˆÊ’u‚ðŒöŽ®‚Æ‚Í‹t“]‚³‚¹‚Ä‚¢‚Ü‚·/
   [_BASE] = LAYOUT( \
       LCTL(KC_Z),    KC_SCLN,       KC_LBRC,       KC_LPRN,   KC_LT,     KC_LCBR,                                _______,  _______,  _______,  _______,  _______,  _______, \
       KANA,          KC_P,          KC_K,          KC_R,      KC_A,      KC_F,                                   _______,  _______,  _______,  _______,  _______,  _______, \
@@ -425,6 +425,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(ag_norm_song);
         #endif
+        eeconfig_update_keymap(keymap_config.raw);
       }
       break;
     case WIN:
@@ -434,6 +435,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #ifdef AUDIO_ENABLE
           PLAY_SONG(ag_swap_song);
         #endif
+        eeconfig_update_keymap(keymap_config.raw);
       }
       break;
     }
