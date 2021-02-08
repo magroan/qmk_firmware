@@ -22,35 +22,36 @@ extern uint8_t is_master;
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  macro1
+  macro1,                          
 };
+
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | 1	  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |  ESC |   1  |   2  |   4  |   5  |   6  |                    |   A  |   A  |   A  |   A  |   A  |  A   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | Tab  |   T  |   Q  |   W  |   E  |   R  |                    |   A  |   A  |   A  |   A  |   A  |  A   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   P  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * |Shift |   S  | F→Q |   S  |   D  |   F  |-------.    ,-------|   A  |   A  |   A  |   A  |   A  |  A   |
+ * |------+------+------+------+------+------|   P   |    |    A  |------+------+------+------+------+------|
+ * |LCtrl |   F2 |  F3  |   F4 |   F5 |   B  |-------|    |-------|   A  |   A  |   A  |   A  |   A  |  A   |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   |   B  |   7  | LALT | /Space  /       \   A  \| A  |   A  |   A  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-
  [_QWERTY] = LAYOUT( \
-  KC_1,   KC_2,   KC_3,    KC_4,    KC_5,    KC_6,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
-  KC_7,   KC_T,   KC_Q,    KC_W,    KC_E,    KC_R,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
-  KC_TAB, KC_S,   macro1,   LSFT(KC_E),    KC_D,    KC_F,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  KC_LCTRL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_P, KC_B,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
-                             KC_Y, KC_LSFT,KC_LALT, KC_SPC,   KC_ENT,  KC_H,   KC_BSPC, KC_RGUI \
-),
+  KC_ESC,   KC_1,   KC_2,    KC_4,    KC_5,    KC_6,                     KC_A,    KC_A,    KC_A,    KC_A,    KC_A,    KC_A,
+  KC_TAB,   KC_T,   KC_Q,    KC_W,    KC_E,    KC_R,                     KC_A,    KC_A,    KC_A,    KC_A,    KC_A,    KC_A,
+  KC_LSHIFT, KC_S,   macro1,  KC_S, KC_D, KC_F,                     KC_A,    KC_A,    KC_A,    KC_A,    KC_A,    KC_A,
+  KC_LCTRL,  KC_F2,  KC_F3,KC_F4,   KC_F5,   KC_B,  KC_P,     KC_A,  KC_A,    KC_A,    KC_A,    KC_A,    KC_A,    KC_A,
+                             KC_B, KC_7,KC_LALT, KC_SPC,     KC_A,  KC_A,    KC_A, KC_A \
+)
 };
+
 
 int RGB_current_mode;
 
@@ -136,27 +137,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case macro1:
+      if (record->event.pressed) {
+      	SEND_STRING("f");
+	_delay_ms(1);
+	SEND_STRING("q");
+//	_delay_ms(5);
+//	SEND_STRING("d");
+      } 
+      return false;
+      break;
   }
   return true;
 }
 
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-		case macro1:
-			//ここに動作を記述し
-		SEND_STRING(SS_TAP("F"));//Win+r
-			_delay_ms(100);
-		SEND_STRING(SS_TAP("Q"));//Enter
-			return false;
-			break;
-			//ここまでコピペ
-  }
-  return true;
-};
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = {
-    {macro1, MY_OTHER_MACRO}
-  }
-};
